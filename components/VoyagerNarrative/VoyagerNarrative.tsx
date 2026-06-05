@@ -2,11 +2,16 @@
 import { useRef } from "react"
 import styles from './VoyagerNarrative.module.css';
 import { NARRATION } from "./scene";
+import { UseVoyagerTimeline } from "./useVoyagerTimeline";
 
 export function VoyagerNarrative() {
   
   const rootRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
+  const yearRef = useRef<HTMLElement>(null);
+  const distRef = useRef<HTMLElement>(null);
+
+  UseVoyagerTimeline({ rootRef, yearRef, distRef });
   
   return (
     <div ref={rootRef} className={styles.root}>
