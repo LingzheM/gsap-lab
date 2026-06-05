@@ -41,3 +41,32 @@
   padding: 0 8vw;
   text-align: center;
 }
+
+.narr {
+  font-weight: 300;
+  line-height: 1.32;
+  font-size: clamp(1.9rem, 5.2vw, 3.6rem);
+  max-width: 18ch;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3rem;
+  color: var(--ink-dm);
+  text-transform: uppercase;
+}
+
+/* 1 序幕 */
+.sub {
+  margin-top: 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2rem;
+  color: var(--ink-dm);
+  text-transform: uppercase;
+}
