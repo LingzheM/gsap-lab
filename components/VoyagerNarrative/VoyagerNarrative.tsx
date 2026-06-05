@@ -18,6 +18,14 @@ export function VoyagerNarrative() {
           <p className={`${styles.sub} prologue-sub`}>{NARRATION.prologueSub}</p>
           <div className={`${styles.scrollHint} scroll-hint`}>向下滚动 ↓</div>
         </section>
+
+        {/** 2. 发射 紧张 */}
+        <section className={`${styles.scene} ${styles.launch} sc-launch`}>
+          <div className={`${styles.earch} earth`}>
+            <div className={`${styles.streak} streak`} />
+          </div>
+          <div className={`${styles.lcaption} launch-cap`}>{NARRATION.launchCaption}</div>
+        </section>
     </div>
   )
 }

@@ -70,3 +70,31 @@
   color: var(--ink-dm);
   text-transform: uppercase;
 }
+
+/* 2 发射 */
+.launch {
+  justify-content: center;
+}
+.earth {
+  width: 46vmin;
+  height: 46vmin;
+  border-radius: 50%;
+  background: radial-gradient(35% 35% at 32% 30%, #bcdcff 0%, #4f86c6 35%, #1c3f6e 70%, #0a1c33 100%);
+  box-shadow: 0 0 80px rgba(79, 134, 198, 0.35), inset -10px -8px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+.streak {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 2px;
+  height: 60vh;
+  transform-origin: bottom center;
+  background: linear-gradient(to top, var(--heat), transparent);
+}
+.lcaption {
+  position: absolute;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 8vw, 6rem);
+  color: var(--ink);
+}
