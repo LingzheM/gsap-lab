@@ -25,6 +25,8 @@ export default function HomePage() {
           >
             <div className={styles.cardGlow} aria-hidden />
             <div className={styles.cardTop}>
+              <span className={styles.cardIndex}>{demo.index}</span>
+              <span className={styles.cardConcept}>{demo.concept}</span>
             </div>
             <div className={styles.cardBody}>
             </div>

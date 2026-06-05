@@ -11,4 +11,14 @@ export interface DemoMeta {
 }
 
 
-export const demos: DemoMeta[] = [];
+export const demos: DemoMeta[] = [
+  {
+    slug: 'voyager',
+    index: '06',
+    title: '旅行者一号',
+    subtitle: 'Voyager',
+    concept: 'ScrollTrigger + SplitText 叙事',
+    description: '七屏滚动叙事',
+    accent: '#ffd700'
+  }
+];
