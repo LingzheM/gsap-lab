@@ -43,6 +43,16 @@ export function UseVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
       gsap.from('.prologue-sub', { opacity: 0, y: 12, duration: 1, delay: 1.4 });
       gsap.to('.scroll-hint', { opacity: 0.4, duration: 1, delay: 2 });
 
+      // 2 发射 紧张 （scrub + pin, power4.in 对抗引力后猛然释放）
+      gsap.timeline({
+        scrollTrigger: { trigger: '.sc-launch', start: '+=150%', scrub: 1, pin: true },
+      })
+        .fromTo('.earch', { scale: 5.5, opacity: 1 }, { scale: 0.05, ease: 'power4.in', duration: 1 })
+        .fromTo('.streak', { scaleY: 0, opacity: 0.9 }, { scaleY: 1.4, opacity: 0, ease: 'power3.in', duration: 0.7 }, 0)
+        .fromTo('.launch-cap', 
+          { opacity: 0, y: 30, letterSpacing: '0.6em' },
+          { opacity: 1, y: 0, letterSpacing: '0.05em', duration: 0.4 }, 0.45);
+
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
 
