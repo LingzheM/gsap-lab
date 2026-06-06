@@ -13,7 +13,7 @@ interface UseVoyagerTimelineOptions {
   distRef: RefObject<HTMLElement | null>;
 }
 
-export function UseVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTimelineOptions) {
+export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTimelineOptions) {
   
   useGSAP(
     () => {

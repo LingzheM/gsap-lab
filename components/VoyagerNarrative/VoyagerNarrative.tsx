@@ -2,8 +2,9 @@
 import { useRef } from "react"
 import styles from './VoyagerNarrative.module.css';
 import { NARRATION } from "./scene";
-import { UseVoyagerTimeline } from "./useVoyagerTimeline";
+import { useVoyagerTimeline } from "./useVoyagerTimeline";
 import { MissionHud } from "./MissionHud";
+import { useStarfield } from "./useStarfield";
 
 export function VoyagerNarrative() {
   
@@ -12,7 +13,8 @@ export function VoyagerNarrative() {
   const yearRef = useRef<HTMLElement>(null);
   const distRef = useRef<HTMLElement>(null);
 
-  UseVoyagerTimeline({ rootRef, yearRef, distRef });
+  useStarfield({ containerRef: starsRef });
+  useVoyagerTimeline({ rootRef: rootRef, yearRef: yearRef, distRef: distRef });
   
   return (
     <div ref={rootRef} className={styles.root}>
