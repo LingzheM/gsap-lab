@@ -126,3 +126,43 @@
   font-size: clamp(2.4rem, 8vw, 6rem);
   color: var(--ink);
 }
+
+/* 3 飞掠 */
+.planets {
+  display: flex;
+  gap: 7vw;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+.planet {
+  position: relative;
+}
+.jupiter {
+  width: 24vmin;
+  height: 24vmin;
+  border-radius: 50%;
+  background: repeating-linear-gradient(8deg, #caa37a 6px #9c6b46 12px, #d9b48a 20px, #b07d52 28px);
+  box-shadow: inset -8px -6px 40px rgba(0, 0, 0, 0.55);
+}
+.saturn {
+  width: 20vmin;
+  height: 20vmin;
+  border-radius: 50%;
+  background: radial-gradient(40% 40% at 38% 32%, #f0d9a8, #caa15e 60%, #7d5d33 100%);
+  box-shadow: inset -6px -5px 30px rgba(0, 0, 0, 0.5);
+}
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34vmin;
+  height: 9vmin;
+  border: 1.5px solid rgba(240, 217, 168, 0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-22deg);
+}
+.fcaption {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+}
