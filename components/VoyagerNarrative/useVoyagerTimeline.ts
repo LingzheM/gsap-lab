@@ -81,6 +81,15 @@ export function UseVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
           { opacity: 0, y: 30, letterSpacing: '0.6em' },
           { opacity: 1, y: 0, letterSpacing: '0.05em', duration: 0.4 }, 0.45);
 
+      
+            // ③ 飞掠 · 惊叹（toggleActions，back.out 孩子气的探头；土星环晚到）
+      gsap.timeline({
+        scrollTrigger: { trigger: '.sc-flyby', start: 'top 62%', toggleActions: 'play none none reverse' },
+      })
+        .from('.planet', { y: 90, opacity: 0, scale: 0.6, ease: 'back.out(1.5)', duration: 0.9, stagger: 0.22 })
+        .from('.ring', { scaleX: 0, opacity: 0, transformOrigin: 'center', ease: 'back.out(2.2)', duration: 0.7 }, '-=0.25')
+        .from('.f-caption', { y: 24, opacity: 0, duration: 0.6 }, '-=0.3');
+        
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
 
