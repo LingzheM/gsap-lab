@@ -25,3 +25,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* 旅行者一号(Voyager)的星空 —— JS 动态生成的星点 */
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.6;
+}

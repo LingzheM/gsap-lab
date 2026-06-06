@@ -1,5 +1,5 @@
-import { useGSAP } from "@gsap/react";
-import { RefObject } from "react";
+import { useGSAP } from '@gsap/react';
+import type { RefObject } from 'react';
 
 interface UseStarfieldOptions {
   containerRef: RefObject<HTMLElement | null>;
@@ -7,8 +7,8 @@ interface UseStarfieldOptions {
 }
 
 /**
- * 在容器里生成一片静态星空。
- * 用全局class `.star`，卸载时清掉
+ * 在容器里生成一片静态星空。星星是 JS 创建的 DOM（不是 React 渲染），
+ * 用全局 class `.star`（见 globals.css），卸载时清掉。
  */
 export function useStarfield({ containerRef, count = 140 }: UseStarfieldOptions) {
   useGSAP(
