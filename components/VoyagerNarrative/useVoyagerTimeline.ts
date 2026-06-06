@@ -33,6 +33,34 @@ export function UseVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         return s;
       };
 
+      // 风粒子动态生成
+      const windEls: HTMLElement[] = [];
+      const boundStage = q('.bound-stage');
+      if (boundStage) {
+        for (let i = 0; i < 22; i++) {
+          const w = document.createElement('div');
+          w.className = 'wind';
+          w.style.left = `${10 + i * 3.6}%`;
+          w.style.top = `${50 + (Math.random() * 40 - 20)}%`;
+          boundStage.appendChild(w);
+          windEls.push(w);
+        }
+      }
+
+      // 全局遥测：纪年 + 距离绑全局滚动进度
+      ScrollTrigger.create({
+        trigger: document.body,
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+          const p = self.progress;
+          if (yearRef.current) yearRef.current.textContent = String(Math.round(1977 + p * 48));
+          if (distRef.current) {
+            distRef.current.textContent = Math.round(p * 24700000000).toLocaleString('en-US');
+          }
+        },
+      });
+
       // 1 序幕 亲密（自动播放，不绑 scroll）
       const splitPro = split('.prologue-line');
       if (splitPro) {
@@ -43,13 +71,13 @@ export function UseVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
       gsap.from('.prologue-sub', { opacity: 0, y: 12, duration: 1, delay: 1.4 });
       gsap.to('.scroll-hint', { opacity: 0.4, duration: 1, delay: 2 });
 
-      // 2 发射 紧张 （scrub + pin, power4.in 对抗引力后猛然释放）
+      // ② 发射 · 紧张（scrub + pin，power4.in 对抗引力后猛然释放）
       gsap.timeline({
-        scrollTrigger: { trigger: '.sc-launch', start: '+=150%', scrub: 1, pin: true },
+        scrollTrigger: { trigger: '.sc-launch', start: 'top top', end: '+=150%', scrub: 1, pin: true },
       })
-        .fromTo('.earch', { scale: 5.5, opacity: 1 }, { scale: 0.05, ease: 'power4.in', duration: 1 })
+        .fromTo('.earth', { scale: 5.5, opacity: 1 }, { scale: 0.05, ease: 'power4.in', duration: 1 })
         .fromTo('.streak', { scaleY: 0, opacity: 0.9 }, { scaleY: 1.4, opacity: 0, ease: 'power3.in', duration: 0.7 }, 0)
-        .fromTo('.launch-cap', 
+        .fromTo('.launch-cap',
           { opacity: 0, y: 30, letterSpacing: '0.6em' },
           { opacity: 1, y: 0, letterSpacing: '0.05em', duration: 0.4 }, 0.45);
 
@@ -59,6 +87,7 @@ export function UseVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
       // cleanup: 还原所有拆字 + 清除风粒子
       return () => {
         splits.forEach((s) => s.revert());
+        windEls.forEach((w) => w.remove());
       }
     },
     { scope: rootRef }
