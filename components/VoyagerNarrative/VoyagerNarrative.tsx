@@ -34,6 +34,23 @@ export function VoyagerNarrative() {
           </div>
           <div className={`${styles.lcaption} launch-cap`}>{NARRATION.launchCaption}</div>
         </section>
+
+        {/** 3. 飞略 惊叹 */}
+        <section className={`${styles.scene} sc-flyby`}>
+          <div className={styles.eyebrow}>{NARRATION.flybyEyebrow}</div>
+          <div className={styles.planets}>
+            <div className={`${styles.planets} planet`}>
+              <div className={styles.jupiter} />
+            </div>
+            <div className={`${styles.planet} planet`}>
+              <div className={styles.saturn} />
+              <div className={`${styles.ring} ring`} />
+            </div>
+          </div>
+          <p className={`${styles.narr} ${styles.fcaption} f-caption`}>
+            我们路过了<span className={styles.em}>巨人</span>。
+          </p>
+        </section>
     </div>
   )
 }
