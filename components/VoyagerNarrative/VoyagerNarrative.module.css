@@ -23,6 +23,17 @@
     radial-gradient(90% 70% at 10% 110%, rgba(232, 177, 76, 0.06), transparent 60%);
 }
 
+.root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: 
+    radial-gradient(120% 80% at 80% -10%, rgba(111, 168, 220, 0.1), transparent 60%),
+    radial-gradient(90% 70% at 10% 110%, rgba(232, 177, 76, 0.06), transparent 60%);
+}
+
 .stars {
   position: fixed;
   inset: 0;
@@ -177,7 +188,7 @@
   font-size: clamp(1.4rem, 4vw, 2.2rem);
 }
 
-/* 4 暗淡蓝色 */
+/* ④ 暗淡蓝点 */
 .dot {
   justify-content: center;
 }
@@ -197,7 +208,7 @@
   height: 120%;
   transform: rotate(20deg);
   transform-origin: top center;
-  background: linear-gradient(to bottom, rgba(232, 177, 76, 0.16),transparent 70%);
+  background: linear-gradient(to bottom, rgba(232, 177, 76, 0.16), transparent 70%);
   filter: blur(2px);
 }
 .bluedot {
@@ -221,7 +232,7 @@
   max-width: 24ch;
 }
 
-/* 5 星际边界 */
+/* ⑤ 星际边界 */
 .boundStage {
   position: relative;
   width: 100%;

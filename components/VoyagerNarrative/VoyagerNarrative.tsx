@@ -6,6 +6,7 @@ import { useVoyagerTimeline } from "./useVoyagerTimeline";
 import { MissionHud } from "./MissionHud";
 import { useStarfield } from "./useStarfield";
 
+// 探测器图标（边界场景 + 永恒场景共用同一段 SVG）
 function ProbeIcon({ stroke }: { stroke: string }) {
   return (
     <svg viewBox="0 0 120 90" fill="none" stroke={stroke} strokeWidth={2} className={styles.probeSvg}>
@@ -14,8 +15,10 @@ function ProbeIcon({ stroke }: { stroke: string }) {
       <line x1="42" y1="40" x2="42" y2="6" />
       <line x1="64" y1="40" x2="112" y2="40" />
       <rect x="60" y="32" width="16" height="16" fill="#0c1118" />
-    </svg>  )
+    </svg>
+  );
 }
+
 
 export function VoyagerNarrative() {
   

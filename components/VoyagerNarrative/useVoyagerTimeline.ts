@@ -101,6 +101,16 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
       }
       tlDot.from('.sunbeam', { opacity: 0, duration: 0.6 }, 0.3);
 
+      // 5 星际边界 孤独 （边界线划过 + 探测器漂移 + 风反向熄灭）
+      gsap.timeline({ scrollTrigger: { trigger: '.sc-interstellar', start: 'top 65%', toggleActions: 'play none none reverse' },
+      })
+        .fromTo('.boundary', { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left center', ease: 'power1.inOut', duration: 1.2 })
+        .to('.probe4', { left: '78%', ease: 'power1.out', duration: 1.5 }, 0)
+        .to('.wind', { opacity: 0, ease: 'power1.out', duration: 0.5, stagger: { each: 0.04, from: 'end' } }, 0.4)
+        .from('.i-caption', { opacity: 0, y: 22, duration: 0.8 }, 0.6);
+
+
+
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
 
