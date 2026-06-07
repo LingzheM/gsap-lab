@@ -53,6 +53,15 @@ export function VoyagerNarrative() {
           我们路过了<span className={styles.em}>巨人</span>。
         </p>
       </section>
+
+      {/** 4 暗淡蓝色 谦卑 */}
+      <section className={`${styles.scene} ${styles.dot} sc-dot`}>
+        <div className={styles.dotStage}>
+          <div className={`${styles.sunbeam} sunbeam`} />
+          <div className={`${styles.bluedot} bluedot`} />
+          <p className={`${styles.dotNarr} dot-narr`}>{NARRATION.dotNarr}</p>
+        </div>
+      </section>
     </div>
   )
 }
