@@ -14,16 +14,15 @@ interface UseVoyagerTimelineOptions {
 }
 
 export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTimelineOptions) {
-  
   useGSAP(
     () => {
       const root = rootRef.current;
       if (!root) return;
 
-      // 在scope内查元素
+      // 在 scope 内查元素的小助手
       const q = <T extends Element>(sel: string) => root.querySelector<T>(sel);
 
-      // 收集所有 SplitText 实例， cleanup 时统一 revert（还原 DOM）
+      // ── 收集所有 SplitText 实例，cleanup 时统一 revert（还原 DOM）──
       const splits: SplitText[] = [];
       const split = (sel: string) => {
         const el = q(sel);
@@ -33,7 +32,7 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         return s;
       };
 
-      // 风粒子动态生成
+      // ── 风粒子动态生成（JS 创建的 DOM，cleanup 时清掉）──
       const windEls: HTMLElement[] = [];
       const boundStage = q('.bound-stage');
       if (boundStage) {
@@ -47,7 +46,7 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         }
       }
 
-      // 全局遥测：纪年 + 距离绑全局滚动进度
+      // ── 全局遥测：纪年 + 距离绑全局滚动进度 ──
       ScrollTrigger.create({
         trigger: document.body,
         start: 0,
@@ -61,7 +60,7 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         },
       });
 
-      // 1 序幕 亲密（自动播放，不绑 scroll）
+      // ① 序幕 · 亲密（自动播放，不绑 scroll）
       const splitPro = split('.prologue-line');
       if (splitPro) {
         gsap.from(splitPro.chars, {
@@ -81,7 +80,6 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
           { opacity: 0, y: 30, letterSpacing: '0.6em' },
           { opacity: 1, y: 0, letterSpacing: '0.05em', duration: 0.4 }, 0.45);
 
-      
       // ③ 飞掠 · 惊叹（toggleActions，back.out 孩子气的探头；土星环晚到）
       gsap.timeline({
         scrollTrigger: { trigger: '.sc-flyby', start: 'top 62%', toggleActions: 'play none none reverse' },
@@ -90,26 +88,25 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         .from('.ring', { scaleX: 0, opacity: 0, transformOrigin: 'center', ease: 'back.out(2.2)', duration: 0.7 }, '-=0.25')
         .from('.f-caption', { y: 24, opacity: 0, duration: 0.6 }, '-=0.3');
 
-      // 4 暗淡蓝色 谦卑 （pin 强制停留，sine.inOut 极缓）
+      // ④ 暗淡蓝点 · 谦卑（pin 强制停留，sine.inOut 极缓——安静即音量）
       const splitDot = split('.dot-narr');
       const tlDot = gsap.timeline({
-        scrollTrigger: { trigger: '.sc-dot', start: 'top top', end: '+=200%', scrub: 1.2, pin: true  },
+        scrollTrigger: { trigger: '.sc-dot', start: 'top top', end: '+=200%', scrub: 1.2, pin: true },
       });
-      tlDot.fromTo('.bluedot', { scale: 7,  opacity: 0.9}, { scale: 0.55, opacity: 1, ease: 'sine.inOut', duration: 1 });
+      tlDot.fromTo('.bluedot', { scale: 7, opacity: 0.9 }, { scale: 0.55, opacity: 1, ease: 'sine.inOut', duration: 1 });
       if (splitDot) {
         tlDot.from(splitDot.chars, { opacity: 0, ease: 'none', duration: 1, stagger: 0.012 }, 0.25);
       }
       tlDot.from('.sunbeam', { opacity: 0, duration: 0.6 }, 0.3);
 
-      // 5 星际边界 孤独 （边界线划过 + 探测器漂移 + 风反向熄灭）
-      gsap.timeline({ scrollTrigger: { trigger: '.sc-interstellar', start: 'top 65%', toggleActions: 'play none none reverse' },
+      // ⑤ 星际边界 · 孤独（边界线划过 + 探测器漂移 + 风反向熄灭）
+      gsap.timeline({
+        scrollTrigger: { trigger: '.sc-interstellar', start: 'top 65%', toggleActions: 'play none none reverse' },
       })
         .fromTo('.boundary', { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left center', ease: 'power1.inOut', duration: 1.2 })
         .to('.probe4', { left: '78%', ease: 'power1.out', duration: 1.5 }, 0)
         .to('.wind', { opacity: 0, ease: 'power1.out', duration: 0.5, stagger: { each: 0.04, from: 'end' } }, 0.4)
         .from('.i-caption', { opacity: 0, y: 22, duration: 0.8 }, 0.6);
-
-
 
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
