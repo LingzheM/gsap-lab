@@ -82,14 +82,25 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
           { opacity: 1, y: 0, letterSpacing: '0.05em', duration: 0.4 }, 0.45);
 
       
-            // ③ 飞掠 · 惊叹（toggleActions，back.out 孩子气的探头；土星环晚到）
+      // ③ 飞掠 · 惊叹（toggleActions，back.out 孩子气的探头；土星环晚到）
       gsap.timeline({
         scrollTrigger: { trigger: '.sc-flyby', start: 'top 62%', toggleActions: 'play none none reverse' },
       })
         .from('.planet', { y: 90, opacity: 0, scale: 0.6, ease: 'back.out(1.5)', duration: 0.9, stagger: 0.22 })
         .from('.ring', { scaleX: 0, opacity: 0, transformOrigin: 'center', ease: 'back.out(2.2)', duration: 0.7 }, '-=0.25')
         .from('.f-caption', { y: 24, opacity: 0, duration: 0.6 }, '-=0.3');
-        
+
+      // 4 暗淡蓝色 谦卑 （pin 强制停留，sine.inOut 极缓）
+      const splitDot = split('.dot-narr');
+      const tlDot = gsap.timeline({
+        scrollTrigger: { trigger: '.sc-dot', start: 'top top', end: '+=200%', scrub: 1.2, pin: true  },
+      });
+      tlDot.fromTo('.bluedot', { scale: 7,  opacity: 0.9}, { scale: 0.55, opacity: 1, ease: 'sine.inOut', duration: 1 });
+      if (splitDot) {
+        tlDot.from(splitDot.chars, { opacity: 0, ease: 'none', duration: 1, stagger: 0.012 }, 0.25);
+      }
+      tlDot.from('.sunbeam', { opacity: 0, duration: 0.6 }, 0.3);
+
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
 
