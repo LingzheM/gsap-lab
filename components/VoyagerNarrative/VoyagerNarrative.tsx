@@ -6,6 +6,17 @@ import { useVoyagerTimeline } from "./useVoyagerTimeline";
 import { MissionHud } from "./MissionHud";
 import { useStarfield } from "./useStarfield";
 
+function ProbeIcon({ stroke }: { stroke: string }) {
+  return (
+    <svg viewBox="0 0 120 90" fill="none" stroke={stroke} strokeWidth={2} className={styles.probeSvg}>
+      <circle cx="42" cy="40" r="26" />
+      <circle cx="42" cy="40" r="3" fill={stroke} />
+      <line x1="42" y1="40" x2="42" y2="6" />
+      <line x1="64" y1="40" x2="112" y2="40" />
+      <rect x="60" y="32" width="16" height="16" fill="#0c1118" />
+    </svg>  )
+}
+
 export function VoyagerNarrative() {
   
   const rootRef = useRef<HTMLDivElement>(null);
@@ -61,6 +72,18 @@ export function VoyagerNarrative() {
           <div className={`${styles.bluedot} bluedot`} />
           <p className={`${styles.dotNarr} dot-narr`}>{NARRATION.dotNarr}</p>
         </div>
+      </section>
+
+      {/** 5 星际边界 孤独  */}
+      <section className={`${styles.scene} sc-interstellar`}>
+        <div className={styles.eyebrow}>{NARRATION.interstellarEyebrow}</div>
+        <div className={`${styles.boundStage} bound-stage`}>
+          <div className={`${styles.boundary} boundary`} />
+          <div className={`${styles.probe} ${styles.probe4} probe4`}>
+            <ProbeIcon stroke="#cdd6df" />
+          </div>
+        </div>
+        <p className={`${styles.iCaption} i-caption`}>从此，<span className={styles.em}>只剩它自己</span>。</p>
       </section>
     </div>
   )

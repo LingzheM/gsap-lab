@@ -5,4 +5,6 @@ export const NARRATION = {
   launchCaption: '挣脱',
   flybyEyebrow: '1979 — 1980 · 飞掠巨人',
   dotNarr: '在这里回望，地球只是一粒尘。你爱过的、争夺过的一切，都落在那一个点上。',
+  interstellarEyebrow: '2012 · 越过太阳的边界',
+
 }
