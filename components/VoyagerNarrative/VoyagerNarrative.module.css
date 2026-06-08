@@ -305,3 +305,37 @@
   font-weight: 300;
   font-size: clamp(1.6rem, 4.5vw, 2.6rem);
 }
+
+.eternity {
+  min-height: 120vh;
+}
+.probeWrap {
+  position: relative;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.endNarr {
+  margin-top: 3rem;
+  font-weight: 300;
+  line-height: 1.4;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  max-width: 16ch;
+}
+.colophon {
+  margin-top: 18vh;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 2;
+}
+.probeSvg {
+  width: 120px;
+  height: auto;
+  opacity: 0.92;
+}

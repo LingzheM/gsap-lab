@@ -1,15 +1,16 @@
-/** 旅行者一号叙事的文案常量。 */
+/** 旅行者一号叙事的文案常量。结构跟视觉强耦合，所以不做成通用数组，直接按场景命名。 */
 export const NARRATION = {
-  prologue: '1977 年, 我们把一只瓶子，扔进了宇宙的海',
+  prologue: '1977 年，我们把一只瓶子，扔进了宇宙的海。',
   prologueSub: 'A message in a bottle, cast into the dark',
   launchCaption: '挣脱',
   flybyEyebrow: '1979 — 1980 · 飞掠巨人',
   dotNarr: '在这里回望，地球只是一粒尘。你爱过的、争夺过的一切，都落在那一个点上。',
   interstellarEyebrow: '2012 · 越过太阳的边界',
+  interstellarCaption: '从此，只剩它自己。',
   recordEyebrow: '携带物 · 金色唱片',
-
-
-}
+  recordCaption: '我们说：你好。',
+  endLine: '它会比我们所有人，活得更久。',
+} as const;
 
 /** 金唱片上的多语言问候（真实金唱片以 55 种语言录下了问候）。 */
 export const GREETINGS = [

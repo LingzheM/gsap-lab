@@ -104,6 +104,19 @@ export function VoyagerNarrative() {
           我们说：<span className={styles.em}>你好。</span>
         </p>
       </section>
+      {/** 7 永恒 苦涩 */}
+      <section className={`${styles.scene} ${styles.eternity} sc-eternity`}>
+        <div className={styles.probeWrap}>
+          <div className={`${styles.probe} probe6`}>
+            <ProbeIcon stroke="#9aa3ac" />
+          </div>
+        </div>
+        <p className={`${styles.endNarr} end-line`}>{NARRATION.endLine}</p>
+        <div className={styles.colophon}>
+          Voyager 1 · 1977 - 仍在飞行
+          <br />
+        </div>
+      </section>
     </div>
   )
 }
