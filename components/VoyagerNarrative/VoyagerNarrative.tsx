@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react"
 import styles from './VoyagerNarrative.module.css';
-import { NARRATION } from "./scene";
+import { GREETINGS, NARRATION } from "./scene";
 import { useVoyagerTimeline } from "./useVoyagerTimeline";
 import { MissionHud } from "./MissionHud";
 import { useStarfield } from "./useStarfield";
@@ -87,6 +87,22 @@ export function VoyagerNarrative() {
           </div>
         </div>
         <p className={`${styles.iCaption} i-caption`}>从此，<span className={styles.em}>只剩它自己</span>。</p>
+      </section>
+
+      {/** 6 黄金唱片 希望 */}
+      <section className={`${styles.scene} sc-record`}>
+        <div className={styles.eyebrow}>{NARRATION.recordEyebrow}</div>
+        <div className={styles.discStage} />
+        <div className={`${styles.disc} disc`}>
+          {GREETINGS.map((g, i) => (
+            <span key={i} className={`${styles.greeting} greeting`} style={g.style}>
+              {g.text}
+            </span>
+          ))}
+        </div>
+        <p className={`${styles.rCaption} record-cap`}>
+          我们说：<span className={styles.em}>你好。</span>
+        </p>
       </section>
     </div>
   )

@@ -260,3 +260,48 @@
   line-height: 1.4;
   font-size: clamp(1.5rem, 4vw, 2.4rem);
 }
+
+/* 6 黄金唱片 */
+.discStage {
+  position: relative;
+  width: 62vmin;
+  height: 62vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disc {
+  width: 40vmin;
+  height: 40vmin;
+  border-radius: 50%;
+  background: 
+    repeating-radial-gradient(circle at center, #d9a23d 0 2px, #b9852b 2px 4px),
+    radial-gradient(circle at center, #f4cd7a, #9c6e1f);
+  box-shadow: 0 0 50px rgba(232, 177, 76, 0.35), inset 0 0 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+.disc::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5vmin;
+  height: 5vmin;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #1a1206;
+}
+.greeting {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.8vw, 17px);
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.rCaption {
+  margin-top: 3rem;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+}
