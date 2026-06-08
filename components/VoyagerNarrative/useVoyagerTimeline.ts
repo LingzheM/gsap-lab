@@ -107,6 +107,17 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         .to('.probe4', { left: '78%', ease: 'power1.out', duration: 1.5 }, 0)
         .to('.wind', { opacity: 0, ease: 'power1.out', duration: 0.5, stagger: { each: 0.04, from: 'end' } }, 0.4)
         .from('.i-caption', { opacity: 0, y: 22, duration: 0.8 }, 0.6);
+      
+        // 6 黄金唱片 希望（from:'random' 像花绽放，back.out雀跃）
+        const tlRec = gsap.timeline({
+          scrollTrigger: { trigger: '.sc-record', start: 'top 60%', toggleActions: 'play none none reverse' },
+        });
+        tlRec.from('.disc', { scale: 0.4, opacity: 0, rotation: -40, ease: 'back.out(1.4)', duration: 1 })
+          .from('.greeting', { scale: 0, opacity: 0, ease: 'back.out(2)', duration: 0.7, stagger: { each: 0.1, from: 'random' } }, '-=0.4');
+        const splitRec = split('.record-cap');
+        if (splitRec) {
+          tlRec.from(splitRec.chars, { y: 20, opacity: 0, ease: 'back.out(2)', duration: 0.5, stagger: 0.04 }, '-=0.3');
+        }
 
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
