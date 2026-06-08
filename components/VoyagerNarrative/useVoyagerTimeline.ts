@@ -1,11 +1,10 @@
-import { useGSAP} from '@gsap/react';
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
-import { RefObject } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+import type { RefObject } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
-
 
 interface UseVoyagerTimelineOptions {
   rootRef: RefObject<HTMLElement | null>;
@@ -107,26 +106,40 @@ export function useVoyagerTimeline({ rootRef, yearRef, distRef }: UseVoyagerTime
         .to('.probe4', { left: '78%', ease: 'power1.out', duration: 1.5 }, 0)
         .to('.wind', { opacity: 0, ease: 'power1.out', duration: 0.5, stagger: { each: 0.04, from: 'end' } }, 0.4)
         .from('.i-caption', { opacity: 0, y: 22, duration: 0.8 }, 0.6);
-      
-        // 6 黄金唱片 希望（from:'random' 像花绽放，back.out雀跃）
-        const tlRec = gsap.timeline({
-          scrollTrigger: { trigger: '.sc-record', start: 'top 60%', toggleActions: 'play none none reverse' },
-        });
-        tlRec.from('.disc', { scale: 0.4, opacity: 0, rotation: -40, ease: 'back.out(1.4)', duration: 1 })
-          .from('.greeting', { scale: 0, opacity: 0, ease: 'back.out(2)', duration: 0.7, stagger: { each: 0.1, from: 'random' } }, '-=0.4');
-        const splitRec = split('.record-cap');
-        if (splitRec) {
-          tlRec.from(splitRec.chars, { y: 20, opacity: 0, ease: 'back.out(2)', duration: 0.5, stagger: 0.04 }, '-=0.3');
-        }
+
+      // ⑥ 黄金唱片 · 希望（from:'random' 像花绽放，back.out 雀跃）
+      const tlRec = gsap.timeline({
+        scrollTrigger: { trigger: '.sc-record', start: 'top 60%', toggleActions: 'play none none reverse' },
+      });
+      tlRec
+        .from('.disc', { scale: 0.4, opacity: 0, rotation: -40, ease: 'back.out(1.4)', duration: 1 })
+        .from('.greeting', { scale: 0, opacity: 0, ease: 'back.out(2)', duration: 0.7, stagger: { each: 0.1, from: 'random' } }, '-=0.4');
+      const splitRec = split('.record-cap');
+      if (splitRec) {
+        tlRec.from(splitRec.chars, { y: 20, opacity: 0, ease: 'back.out(2)', duration: 0.5, stagger: 0.04 }, '-=0.3');
+      }
+
+      // ⑦ 永恒 · 苦涩（探测器超长漂出 + 文字反向溶解，sine.in 沉入黑）
+      const splitEnd = split('.end-line');
+      const tlEnd = gsap.timeline({
+        scrollTrigger: { trigger: '.sc-eternity', start: 'top 65%', toggleActions: 'play none none none' },
+      });
+      if (splitEnd) {
+        tlEnd.from(splitEnd.chars, { y: 14, opacity: 0, ease: 'power2.out', duration: 0.7, stagger: 0.05 });
+      }
+      tlEnd.to('.probe6', { x: '42vw', y: '-12vh', opacity: 0.25, ease: 'sine.inOut', duration: 3 }, 0);
+      if (splitEnd) {
+        tlEnd.to(splitEnd.chars, { opacity: 0, ease: 'sine.in', duration: 0.9, stagger: { each: 0.06, from: 'end' } }, '+=1.3');
+      }
 
       // 字体加载完后刷新，保证 pin / 拆字宽度准确
       document.fonts.ready.then(() => ScrollTrigger.refresh());
 
-      // cleanup: 还原所有拆字 + 清除风粒子
+      // ── cleanup：还原所有拆字 + 清掉风粒子 ──
       return () => {
         splits.forEach((s) => s.revert());
         windEls.forEach((w) => w.remove());
-      }
+      };
     },
     { scope: rootRef }
   );
