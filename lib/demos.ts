@@ -20,5 +20,14 @@ export const demos: DemoMeta[] = [
     concept: 'ScrollTrigger + SplitText 叙事',
     description: '七屏滚动叙事',
     accent: '#ffd700'
+  },
+  {
+    slug: 'clarity-story',
+    index: '07',
+    title: '澄明',
+    subtitle: 'Genesis of Clarity',
+    concept: 'DrawSVG',
+    description: 'SVG描边于路径变形。',
+    accent: '#27AE60',
   }
 ];
