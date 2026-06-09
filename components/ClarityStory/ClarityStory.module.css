@@ -1,0 +1,61 @@
+.storyContainer {
+  display: flex;
+  position: relative;
+  background-color: #faf9f6; /* 温暖平静的米白 */
+  color: #333;
+}
+
+/* 左侧滚动文字 */
+.textSection {
+  width: 50%;
+  padding: 0 10vw;
+  z-index: 2;
+}
+
+.step {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0.2; /* 初始暗,滚到中央时高亮 */
+  transition: opacity 0.5s ease;
+}
+/* ScrollTrigger 动态加的 .active —— 用 :global 命中 */
+.step:global(.active) {
+  opacity: 1;
+}
+
+.stepTitle {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+.stepBody {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #5d6d7e;
+}
+
+/* 右侧固定 SVG 舞台 */
+.svgStage {
+  width: 50%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.mainSvg {
+  width: 80%;
+  max-width: 500px;
+  overflow: visible;
+}
+
+/* 变形目标:留在 DOM 但隐藏 */
+.hiddenPaths {
+  visibility: hidden;
+  position: absolute;
+}
