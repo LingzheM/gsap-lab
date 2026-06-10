@@ -8,6 +8,8 @@ import Link from "next/link";
 import styles from './page.module.css';
 import { LabClock } from "@/components/LabWidgets/LabClock";
 import { DEFAULT_SPAN, demoSpans } from "@/lib/bento";
+import { LabStats } from "@/components/LabWidgets/LabStats";
+import { LabEasterEgg } from "@/components/LabWidgets/LabEasterEgg";
 
 export default function HomePage() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -74,6 +76,23 @@ export default function HomePage() {
             </Link>
           )
         })}
+
+        {/** 小部件：统计 */}
+        <section className={`${styles.tile} ${styles.tileWidget} bento-tile`}>
+          <LabStats />
+        </section>
+
+        {/** 小部件：彩蛋 */}
+        <section className={`${styles.tile} ${styles.tileWidget} bento-tile`}>
+          <LabEasterEgg />
+        </section>
+
+        {/** 页脚砖 */}
+        <section className={`${styles.tile} ${styles.tileFooter} bento-tile`}>
+          <span>React + TypeScript + CSS Modules</span>
+          <span className={styles.sep}>·</span>
+          <span>GSAP 3 + ScrollTrigger</span>
+        </section>
       </div>
     </div>
   )
