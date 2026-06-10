@@ -1,12 +1,26 @@
 "use client";
 
 import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import { demos } from '@/lib/demos';
 import Link from "next/link";
 import styles from './page.module.css';
 
 export default function HomePage() {
   const rootRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from('.bento-tile', {
+        y: 28,
+        opacity: 0,
+        scale: 0.98,
+        duration: 0.7,
+        stagger: { each: 0.05, from: 'start' },
+        ease: 'power3.out',
+      })
+    }
+  )
 
   return (
     <div ref={rootRef} className={styles.page}>
