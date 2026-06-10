@@ -1,10 +1,13 @@
 "use client";
 
 import { useRef } from "react";
+import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
 import { demos } from '@/lib/demos';
 import Link from "next/link";
 import styles from './page.module.css';
+import { LabClock } from "@/components/LabWidgets/LabClock";
+import { DEFAULT_SPAN, demoSpans } from "@/lib/bento";
 
 export default function HomePage() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -25,35 +28,53 @@ export default function HomePage() {
   return (
     <div ref={rootRef} className={styles.page}>
       <div className={styles.grain} aria-hidden />
-      <header className={`${styles.head} lab-head`}>
-        <div className={styles.kicker}>GSAP Motion Lab</div>
-        <h1 className={styles.title}></h1>
-      </header>
-      <main className={styles.grid}>
-        {demos.map((demo) => (
-          <Link
-            key={demo.slug}
-            href={`/${demo.slug}`}
-            className={`${styles.card} lab-card`}
-            style={{ '--accent': demo.accent } as React.CSSProperties}
-          >
-            <div className={styles.cardGlow} aria-hidden />
-            <div className={styles.cardTop}>
-              <span className={styles.cardIndex}>{demo.index}</span>
-              <span className={styles.cardConcept}>{demo.concept}</span>
-            </div>
-            <div className={styles.cardBody}>
-            </div>
-            <div className={styles.cardArrow} aria-hidden>
 
-            </div>
-          </Link>
-        ))}
-      </main>
+      <div className={styles.bento}>
+        {/** 标题砖：占满整行的活字招牌 */}
+        <section className={`${styles.tile} ${styles.tileWordmark} bento-tile`}>
+          <div className={styles.kicker}>GSAP · Motion Lab</div>
+          <h1 className={styles.wordmark}>
+            练习集
+          </h1>
+          <p className={styles.intro}>
+            GSAP demo
+          </p>
+        </section>
 
-      <footer>
+        {/** 小部件：时钟 */}
+        <section className={`${styles.tile} ${styles.tileWidget} bento-tile`}>
+          <LabClock />
+        </section>
 
-      </footer>
+        {/** demo 卡片 */}
+        {demos.map((demo) => {
+          const span = demoSpans[demo.slug] ?? DEFAULT_SPAN;
+          return (
+            <Link
+              key={demo.slug}
+              href={`/${demo.slug}`}
+              className={`${styles.tile} ${styles.card} bento-tile`}
+              style={
+                {
+                  '--accent': demo.accent,
+                  gridColumn: `span ${span.col}`,
+                  gridRow: `span ${span.row}`,
+                } as React.CSSProperties
+              }
+            >
+              <div className={styles.cardGlow} aria-hidden />
+              <div className={styles.cardTop}>
+               <span className={styles.cardIndex}>{demo.index}</span>
+                <span className={styles.cardConcept}>{demo.concept}</span>
+              </div>
+              <div className={styles.cardBody}>
+              </div>
+              <div className={styles.cardArrow} aria-hidden>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }
