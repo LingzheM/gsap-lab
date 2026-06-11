@@ -1,0 +1,21 @@
+.back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 7px 14px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.back:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+}
