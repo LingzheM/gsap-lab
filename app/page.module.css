@@ -1,11 +1,187 @@
 .page {
   position: relative;
   min-height: 100vh;
-  background: 
-    radial-gradient(1000px 600px at 80% -10%, rgba(99,102,241,0.12), transparent 60%),
-    radial-gradient(900px 500px at 10% 110%, rgba(255,215,0,0.06), transparent 60),
+  background:
+    radial-gradient(1000px 600px at 80% -10%, rgba(99, 102, 241, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(255, 215, 0, 0.06), transparent 60%),
     #07070b;
   color: #f3f1ec;
-  padding: clamp(48px, 8vw, 120px) clamp(24px, 6vw, 90px) 80px;
+  padding: clamp(20px, 4vw, 48px);
   overflow: hidden;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.bento {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px;
+  gap: 16px;
+}
+
+.tile {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 24px;
+  overflow: hidden;
+}
+.tileWordmark {
+  grid-column: span 3;
+  grid-row: span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(165, 161, 255, 0.08), rgba(255, 255, 255, 0.02));
+}
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.7);
+  margin-bottom: 12px;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.wordmark em {
+  font-style: italic;
+  color: #a5a1ff;
+}
+.intro {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(243, 241, 236, 0.55);
+  max-width: 520px;
+}
+
+.tileWidget {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+}
+.tileFooter {
+  grid-column: 1 / -1;
+  grid-row: span 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08rem;
+  color: rgba(243, 241, 236, 0.4);
+  background: transparent;
+  border-style: dashed;
+}
+.sep {
+  opacity: 0.4;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, background 0.4s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.cardGlow {
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 70%;
+  height: 80%;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  opacity: 0;
+  filter: blur(40px);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.card:hover .cardGlow {
+  opacity: 0.25;
+}
+
+.cardTop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.cardIndex {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-style: italic;
+  color: var(--accent);
+}
+.cardConcept {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: rgba(243, 241, 236, 0.45);
+  text-align: right;
+  max-width: 60%;
+}
+
+.cardBody {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.05;
+}
+.cardSubtitle {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 236, 0.4);
+  margin-top: 6px;
+}
+.cardDesc {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(243, 241, 236, 0.55);
+}
+
+.cardArrow {
+  position: absolute;
+  bottom: 22px;
+  right: 24px;
+  font-size: 20px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.card:hover .cardArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
