@@ -29,3 +29,25 @@
   font-size: 12px;
   color: rgba(165, 161, 255, 0.7);
 }
+
+.stats {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+}
+.statValue {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1;
+  color: #a5a1ff;
+}
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 236, 0.45);
+  text-align: center;
+}
