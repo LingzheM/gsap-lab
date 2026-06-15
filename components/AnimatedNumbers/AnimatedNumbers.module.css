@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--an-gap, 0px);
+  height: var(--an-height, 60vh);
+  font-family: var(--an-font-family, inherit);
+  overflow: hidden;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--col-color, #fff);
+  animation: scroll 2s linear infinite;
+  animation-duration: calc(2s / var(--col-speed, 1));
+  animation-direction: normal;
+}
+
+.glyph {
+  font-size: clamp(2rem, 10vw, 12rem);
+  line-height: 1;
+  color: var(--an-digit-fill, #EEEFEB);
+  font-weight: 700;
+  text-shadow: 0 0 var(--an-amp, 48px) var(--col-color, #fff);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(calc(-1 * var(--an-amp, 48px)));
+  }
+  50% {
+    transform: translateY(var(--an-amp, 48px));
+  }
+  100% {
+    transform: translateY(calc(-1 * var(--an-amp, 48px)));
+  }
+}

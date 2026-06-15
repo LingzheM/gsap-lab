@@ -1,4 +1,5 @@
-// AnimatedNumbers.tsx  —— 无 ref、无 useEffect，纯渲染
+'use client';
+
 import { useMemo, type CSSProperties } from "react";
 import styles from "./AnimatedNumbers.module.css";
 import {
@@ -8,9 +9,9 @@ import {
   splitChars,
   colorAt,
   makeSpeedFactors,
-} from "./AnimatedNumbers";
+} from "./animatedNumbersData";
 
-export default function AnimatedNumbers({
+export function AnimatedNumbers({
   value,
   colors = DEFAULT_COLORS,
   digitFill = "#EEEFEB",

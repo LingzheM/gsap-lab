@@ -54,7 +54,7 @@ export const demos: DemoMeta[] = [
     kind: 'lesson',
   },
   {
-    slug: 'flip-layout',
+    slug: 'animated-numbers',
     index: '09',
     title: '数字滚动',
     subtitle: '滚动位置驱动每个数字',
