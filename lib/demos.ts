@@ -53,4 +53,14 @@ export const demos: DemoMeta[] = [
     accent: '#c0532f',
     kind: 'lesson',
   },
+  {
+    slug: 'flip-layout',
+    index: '09',
+    title: '数字滚动',
+    subtitle: '滚动位置驱动每个数字',
+    concept: 'GSAP',
+    description: '',
+    accent: '#c0532f',
+    kind: 'lesson',
+  },
 ];
